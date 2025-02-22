@@ -1,0 +1,10 @@
+<section class="max-w-screen-xl p-4 mx-auto">
+  <div class="mx-auto">
+    <h1 class="sm:text-4xl text-3xl my-5 border-l-5 border-l-main-color pl-2 uppercase">Popular Categories</h1>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 my-5">
+      @for(category of categoriesList; track category._id){
+        <app-category-card [categories]="category"></app-category-card>
+      }
+    </div>
+  </div>
+</section>

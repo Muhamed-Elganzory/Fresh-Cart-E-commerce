@@ -5,7 +5,14 @@
   "projects": {
     "Fresh-Cart": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -27,9 +34,16 @@
               }
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-atom.css",
+              "node_modules/ngx-spinner/animations/ball-pulse-sync.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "./node_modules/flowbite/dist/flowbite.min.js"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -38,6 +52,10 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [{
+                "with": "./src/app/Environments/environment.ts",
+                "replace": "./src/app/Environments/environment.prod.ts"
+              }],
               "budgets": [
                 {
                   "type": "initial",

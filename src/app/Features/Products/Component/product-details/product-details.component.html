@@ -1,0 +1,34 @@
+  <section class="pt-16 max-w-screen-xl p-4 mx-auto">
+    <div class="mx-auto">
+      <h1 class="sm:text-4xl text-3xl my-5 border-l-5 border-l-main-color pl-2 uppercase">Details of product</h1>
+      <div class="mx-auto grid sm:grid-cols-12 p-3 my-5">
+        <div class="sm:col-span-6 grid grid-cols-5 gap-2">
+          <div class="col-span-1 flex flex-col gap-2">
+            @for (imageProduct of productDetails.images.slice(0, 4); track $index) {
+              <img [src]="imageProduct" (click)="changeImage(imageProduct)" class="shadow w-full h-30 sm:h-25 lg:h-30 xl:h-35 object-cover rounded-[8px] cursor-pointer" alt="Image">
+            }
+          </div>
+          <div class="col-span-4 relative group">
+            <img [src]="isChangeImage ? isChangeImage:productDetails.imageCover" alt="Product Image" class=" w-full h-125 sm:h-107 lg:h-125 xl:h-145 object-cover rounded-2xl shadow">
+            <button (click)="isFavoriteMark()" class="bg-transparent px-4 py-1.5 rounded absolute top-2 right-2.5 cursor-pointer transition-all duration-700 ml-auto"><i class="fa-solid fa-heart text-2xl text-gray-300 group-hover:text-red-400" [class]="{'text-red-400': isFavorite}"></i></button>
+          </div>
+        </div>
+        <div class="sm:col-span-6 p-5">
+          <h1 class="sm:text-3xl text-xl">{{ productDetails.title }}</h1>
+          <h3 class="text-lg sm:text-xl py-2 bg-gradient-to-tr from-blue-500 to-green-600 bg-clip-text text-transparent">{{ productDetails.category.name }} <span class="text-lg bg-gradient-to-tr from-blue-500 to-green-600 bg-clip-text text-transparent">( {{ productDetails.brand.name}} )</span></h3>
+          <p class="sm:text-xl py-5 text-gray-500">{{ productDetails.description }}</p>
+          <span class="text-lg bg-gradient-to-tr from-blue-500 to-green-600 bg-clip-text text-transparent">Sold so far <span>{{ productDetails.sold }}</span></span>
+          <div class="flex justify-between items-center">
+            <span><h4 class="text-xl py-5 fa-solid">{{ productDetails.price }} EGP</h4></span>
+            <div class="flex flex-col text-center">
+              <i class="fa-solid fa-star text-rating-color"><span class="text-black px-1">{{ productDetails.ratingsAverage }}</span></i>
+              <span class="text-gray-400">( {{productDetails.ratingsQuantity}}k )</span>
+            </div>
+          </div>
+          <div class="flex gap-1">
+            <button (click)="addProductCart(productDetails._id)" class="btn-signup-signin">+ Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

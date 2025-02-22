@@ -1,0 +1,7 @@
+<div class="relative group">
+  <div class="rounded-2xl p-3 shadow bg-gray-50 cursor-pointer hover:border border-main-color hover:shadow-main-shadow transition-all">
+      <img [src]="categories.image" class="w-full md:h-70 transition-all duration-700 group-hover:rounded-tr-4xl group-hover:rounded-bl-4xl sm:h-80 h-100" [alt]="categories.name">
+      <h1 class="text-main-color py-1.5 font-extrabold text-center">{{ categories.name }}</h1>
+      <h1 class="text-gray-400 py-1.5 font-extrabold">Latest Update {{ categories.updatedAt.split("T")[0] }}</h1>
+  </div>
+</div>

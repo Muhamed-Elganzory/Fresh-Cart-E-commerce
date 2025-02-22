@@ -1,0 +1,25 @@
+<div class="grid grid-cols-12 gap-4 my-5 border-b border-gray-200 pb-5">
+  <div class="col-span-4 sm:col-span-3 md:col-span-3 lg:col-span-2">
+    <img [src]="product.product.imageCover" class="w-full" [alt]="product.product.title">
+  </div>
+  <div class="col-span-8 sm:col-span-9 md:col-span-9 lg:col-span-10 flex justify-between">
+    <div class="">
+      <h4 class="font-extrabold p-1">{{ product.product.title }}</h4>
+      <span class="text-main-color block p-1 my-2">price {{ product.price}}</span>
+      <button (click)="onRemoveCart(product.product._id)" class="rounded cursor-pointer border-[0.5px] border-main-color py-2 px-5 bg-gray-50"><i class="fa-solid fa-trash-can text-main-color"></i> Remove</button>
+    </div>
+    <div class="">
+      <div class="inline-flex rounded-md shadow-xs w-fit" role="group">
+        <button (click)="onUpdateQuantity(product.product._id ,product.count + 1)" type="button" class="cursor-pointer px-1.5 font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-main-color focus:z-10 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:text-white">
+          <i class="fa-solid fa-plus text-[18px] text-gray-300 p-1 group-hover:text-green-500" [class]="{'text-green-600': product.count}"></i>
+        </button>
+        <div class="px-3 p-1.5 font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:text-main-color focus:z-10 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700  dark:focus:text-white">
+          {{ product.count }}
+        </div>
+        <button (click)="onUpdateQuantity(product.product._id ,product.count - 1)" type="button" class="cursor-pointer px-1.5 font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-main-color focus:z-10 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700  dark:focus:text-white">
+          <i class="fa-solid fa-minus text-[18px] text-gray-300 hover:text-green-400 p-1" [class]="{'text-green-600': product.count}"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
