@@ -13,8 +13,8 @@ export class OrderService {
   private readonly authService: AuthService = inject (AuthService);
 
   createCheckOut(cartID: string | null, shippingAddress:{details: string, phone: string, city: string}): Observable <any>{
-    // cancel_url
-    const returnURL = '?url=http://localhost:4200';
+    // const cancel_url = '?url=http://localhost:4200/';
+    const returnURL = '?url=https://fresh-cart-e-commerce-nu.vercel.app';
     return this.httpClient.post(testingEnvironment.baseURL + 'orders/checkout-session/' + cartID + returnURL,
       {
         shippingAddress: shippingAddress,
