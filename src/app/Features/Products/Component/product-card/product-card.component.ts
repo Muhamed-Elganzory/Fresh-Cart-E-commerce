@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {Products} from '../../Models/Products';
 import {RouterLink} from '@angular/router';
 
@@ -23,4 +23,5 @@ export class ProductCardComponent {
   onAddToCart(productID: string){
     this.addToCart.emit(productID);
   }
+
 }

@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {testingEnvironment} from '../../../Environments/environment';
-import {AuthService} from '../../../Core/Auth-Components/Services/auth.service';
+import {AuthService} from '../../../Core/Auth/Services/auth.service';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -9,9 +9,9 @@ import {Observable} from 'rxjs';
 })
 export class CartService {
   private readonly httpClient: HttpClient = inject(HttpClient);
-  private readonly authServices: AuthService = inject(AuthService);
+  // private readonly authServices: AuthService = inject(AuthService);
 
-  addProductToCart(productID: string): Observable<any>{
+  addProductToCart(productID: string): Observable <any> {
     return this.httpClient.post(testingEnvironment.baseURL + 'cart',
       {
         productId: productID
@@ -21,7 +21,7 @@ export class CartService {
       }}*/)
   }
 
-  UpdateCartQuantity(productID: string, count: number): Observable<any>{
+  UpdateCartQuantity(productID: string, count: number): Observable <any> {
     return this.httpClient.put(testingEnvironment.baseURL + 'cart/' + productID,
       {
           count: count
@@ -31,7 +31,7 @@ export class CartService {
       }}*/)
   }
 
-  getLoggedUserCart(): Observable <any>{
+  getLoggedUserCart(): Observable <any> {
     return this.httpClient.get(testingEnvironment.baseURL + 'cart',
       /*, {
         headers: {
@@ -39,7 +39,7 @@ export class CartService {
       }}*/)
   }
 
-  removeCart(productID: string): Observable <any>{
+  removeSpecificCartItem (productID: string): Observable <any> {
     return this.httpClient.delete(testingEnvironment.baseURL + 'cart/' + productID,
       /*, {
         headers: {
@@ -47,7 +47,7 @@ export class CartService {
       }}*/)
   }
 
-  clearCart(): Observable <any>{
+  clearUserCart(): Observable <any> {
     return this.httpClient.delete(testingEnvironment.baseURL + 'cart',
       /*, {
         headers: {

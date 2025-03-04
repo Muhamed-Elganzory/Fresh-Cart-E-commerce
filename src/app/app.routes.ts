@@ -1,40 +1,28 @@
 import { Routes } from '@angular/router';
-import {AuthLayoutComponent} from './Core/Layouts/Components/auth-layout/auth-layout.component';
-import {UserLayoutComponent} from './Core/Layouts/Components/user-layout/user-layout.component';
-import {SignInComponent} from './Core/Auth-Components/Components/sign-in/sign-in.component';
-import {SignUpComponent} from './Core/Auth-Components/Components/sign-up/sign-up.component';
-import {HomeComponent} from './Features/Home/Components/home/home.component';
-import {ProductDetailsComponent} from './Features/Products/Component/product-details/product-details.component';
-import {ProductsComponent} from './Features/Products/Component/products/products.component';
-import {CategoriesComponent} from './Features/Categories/Components/categories/categories.component';
-import {BrandsComponent} from './Features/Brands/Components/brands/brands.component';
-import {NotFoundComponent} from './Shared/Components/not-found/not-found.component';
 import {authGuard} from './Core/Guards/auth.guard';
 import {loggedGuard} from './Core/Guards/loggedGuard';
-import {CartListComponent} from './Features/Cart/Components/cart-list/cart-list.component';
-import {CheckOutComponent} from './Features/Orders/Components/check-out/check-out.component';
-import {OrdersComponent} from './Features/Orders/Components/orders/orders.component';
+
 
 export const routes: Routes = [
-  {path: '', component: AuthLayoutComponent, canActivate: [loggedGuard], children: [
+  {path: '', loadComponent: () => import('./Core/Layouts/Components/auth-layout/auth-layout.component').then((c) => c.AuthLayoutComponent), canActivate: [loggedGuard], children: [
       {path:'', redirectTo: 'login', pathMatch: 'full'},
-      {path: 'login', component: SignInComponent, title: 'Login'},
-      {path: 'register', component: SignUpComponent, title: 'Sign Up'},
+      {path: 'login', loadComponent: ()=> import('./Core/Auth/Components/sign-in/sign-in.component').then((c) =>  c.SignInComponent), title: 'Login'},
+      {path: 'register', loadComponent: () => import('./Core/Auth/Components/sign-up/sign-up.component').then((c) => c.SignUpComponent), title: 'Sign Up'},
     ]
   },
-  {path: '', component: UserLayoutComponent, canActivate: [authGuard], children: [
+  {path: '', loadComponent: () => import('./Core/Layouts/Components/user-layout/user-layout.component').then((c) => c.UserLayoutComponent), canActivate: [authGuard], children: [
       {path:'', redirectTo: 'home', pathMatch: 'full'},
-      {path: 'home', component: HomeComponent, title: 'Home'},
-      {path: 'products', component: ProductsComponent, title: 'Products'},
-      {path: 'product-details/:id', component: ProductDetailsComponent, title: 'Product Details'},
-      {path: 'categories', component: CategoriesComponent, title: 'Categories'},
-      {path: 'brands', component: BrandsComponent, title: 'Brands'},
-      {path: 'cart', component: CartListComponent, title: 'Cart'},
-      {path: 'checkout/:id', component: CheckOutComponent, title: 'Check Out'},
-      {path: 'allorders', component: OrdersComponent, title: 'Orders'},
+      {path: 'home', loadComponent: () => import('./Features/Home/Components/home/home.component').then((c) => c.HomeComponent), title: 'Home'},
+      {path: 'products', loadComponent: () => import('./Features/Products/Component/products/products.component').then((c) => c.ProductsComponent), title: 'Products'},
+      {path: 'product-details/:id', loadComponent: () => import('./Features/Products/Component/product-details/product-details.component').then((c) => c.ProductDetailsComponent), title: 'Product Details'},
+      {path: 'categories', loadComponent: () => import('./Features/Categories/Components/categories/categories.component').then((c) => c.CategoriesComponent), title: 'Categories'},
+      {path: 'brands', loadComponent: () => import('./Features/Brands/Components/brands/brands.component').then((c) => c.BrandsComponent), title: 'Brands'},
+      {path: 'cart', loadComponent: () => import('./Features/Cart/Components/cart-list/cart-list.component').then((c) => c.CartListComponent), title: 'Cart'},
+      {path: 'checkout/:id', loadComponent: () => import('./Features/Orders/Components/check-out/check-out.component').then((c) => c.CheckOutComponent), title: 'Check Out'},
+      {path: 'allorders', loadComponent: () => import('./Features/Orders/Components/orders/orders.component').then((c) => c.OrdersComponent), title: 'Orders'},
     ]
   },
-  {path: '**', component: NotFoundComponent}
+  {path: '**', loadComponent: () => import('./Shared/Components/not-found/not-found.component').then((c) => c.NotFoundComponent), title: 'Not Found'}
 ];
 
 // terav@mailinator.com

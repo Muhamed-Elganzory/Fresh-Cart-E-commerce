@@ -55,11 +55,9 @@ export class SignInComponent implements OnInit {
         },
         complete: (): void  => {
           this.isLoading = false;
-          // this.authService.setTokenLocalStorage(this.token);
 
           this.authService.verifyToken(this.token).subscribe({
             next: (): void => {
-              console.log("success");
               this.authService.setTokenCookie(this.token);
               this.goToHome();
             },

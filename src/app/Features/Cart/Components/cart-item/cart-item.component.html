@@ -6,11 +6,11 @@
     <div class="">
       <h4 class="font-extrabold p-1">{{ product.product.title }}</h4>
       <span class="text-main-color block p-1 my-2">price {{ product.price}}</span>
-      <button (click)="onRemoveCart(product.product._id)" class="rounded cursor-pointer border-[0.5px] border-main-color py-2 px-5 bg-gray-50"><i class="fa-solid fa-trash-can text-main-color"></i> Remove</button>
+      <button (click)="onRemoveCart (product.product._id)" class="rounded cursor-pointer border-[0.5px] border-main-color py-1 px-5 bg-gray-50 hover:bg-gray-100"><i class="fa-solid fa-trash-can text-main-color"></i> Remove</button>
     </div>
     <div class="">
       <div class="inline-flex rounded-md shadow-xs w-fit" role="group">
-        <button (click)="onUpdateQuantity(product.product._id ,product.count + 1)" type="button" class="cursor-pointer px-1.5 font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-main-color focus:z-10 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:text-white">
+        <button (click)="onUpdateQuantity(product.product._id , product.count + 1)" type="button" class="cursor-pointer px-1.5 font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-main-color focus:z-10 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:text-white">
           <i class="fa-solid fa-plus text-[18px] text-gray-300 p-1 group-hover:text-green-500" [class]="{'text-green-600': product.count}"></i>
         </button>
         <div class="px-3 p-1.5 font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:text-main-color focus:z-10 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700  dark:focus:text-white">

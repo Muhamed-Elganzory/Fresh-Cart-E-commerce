@@ -16,7 +16,6 @@ export class CartItemComponent {
     this.removeCartItem.emit(productID);
   }
 
-
   onUpdateQuantity (productID: string, count: number): void {
     this.updateProductQuantity.emit({productID, count});
   }

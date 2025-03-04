@@ -19,11 +19,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './check-out.component.css'
 })
 export class CheckOutComponent implements OnInit {
-  private readonly orderService: OrderService = inject(OrderService);
-  private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
-  private readonly toastr: ToastrService = inject(ToastrService);
+  private readonly orderService: OrderService = inject (OrderService);
+  private readonly activatedRoute: ActivatedRoute = inject (ActivatedRoute);
+  private readonly toastr: ToastrService = inject (ToastrService);
 
-  checkOutForm: FormGroup = new FormGroup({});
+  checkOutForm: FormGroup = new FormGroup ({});
   isLoading: boolean = false;
   successMessage: string = '';
   errorMessage: string = '';
@@ -41,18 +41,13 @@ export class CheckOutComponent implements OnInit {
   submitForm(): void {
     this.isLoading = true;
     if (this.checkOutForm.valid || this.isLoading) {
-      console.log("Form Submitted:", this.checkOutForm.value);
       this.orderService.createCheckOut(this.cartID, this.checkOutForm.value).subscribe({
         next: (response: any): void => {
-          this.isLoading = false;
-          console.log(response);
+          this.isLoading = true;
           this.toastr.success(response.status);
           this.checkOutForm.reset();
           open(response.session.url, '_balnk');
         },
-        error: (error: any): void => {
-          console.log(error);
-        }
       })
     }
   }

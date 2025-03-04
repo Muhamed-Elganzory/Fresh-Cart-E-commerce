@@ -17,15 +17,16 @@ import {ToastrService} from 'ngx-toastr';
 export class CartListComponent implements OnInit {
   private readonly cartService: CartService = inject(CartService);
   private readonly toastr: ToastrService = inject(ToastrService);
+
   cartDetails: Cart = {} as Cart;
 
-  isLoading = false;
+  isLoading: boolean = false;
 
   ngOnInit() {
     this.loadCartList();
   }
 
-  loadCartList() : void{
+  loadCartList(): void {
     this.cartService.getLoggedUserCart().subscribe({
       next: (response: any) => {
         this.cartDetails = response;
@@ -35,9 +36,8 @@ export class CartListComponent implements OnInit {
   }
 
   removeCartItem(productID: string): void{
-    this.cartService.removeCart(productID).subscribe({
+    this.cartService.removeSpecificCartItem(productID).subscribe({
       next: (response: any) => {
-        console.log(response);
         this.cartDetails = response;
       }
     })
@@ -61,7 +61,7 @@ export class CartListComponent implements OnInit {
   }
 
   clearCart(): void{
-    this.cartService.clearCart().subscribe({
+    this.cartService.clearUserCart().subscribe({
       next: (response: any) => {
         if(response.message == 'success'){
           this.loadCartList()
