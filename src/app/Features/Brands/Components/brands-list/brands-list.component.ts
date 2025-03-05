@@ -23,13 +23,6 @@ export class BrandsListComponent implements OnInit {
     this.brandsService.getAllBrands().subscribe({
       next: (response: any): void => {
         this.brandsList = response.data;
-        console.log(this.brandsList);
-      },
-      error: (error: any): void => {
-        console.log(error);
-      },
-      complete: (): void => {
-        console.log('Brands list complete');
       }
     })
   }

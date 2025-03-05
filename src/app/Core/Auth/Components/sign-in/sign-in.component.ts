@@ -61,9 +61,6 @@ export class SignInComponent implements OnInit {
               this.authService.setTokenCookie(this.token);
               this.goToHome();
             },
-            error: (error: any): void  => {
-              console.log(error);
-            }
           });
         }
       })

@@ -9,6 +9,7 @@ import { provideToastr } from 'ngx-toastr';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {authInterceptor} from './Core/Interceptors/auth.interceptor';
 import {loadingInterceptor} from './Core/Interceptors/loading.interceptor';
+import {catchErrorInterceptor} from './Core/Interceptors/catch-error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,7 +23,7 @@ export const appConfig: ApplicationConfig = {
         anchorScrolling: 'enabled'
       }),
     ),
-    provideHttpClient(withFetch(), withInterceptors([authInterceptor, loadingInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor, loadingInterceptor, catchErrorInterceptor])),
     provideClientHydration(withEventReplay()),
     importProvidersFrom(BrowserAnimationsModule, NgxSpinnerModule),
     provideAnimations(),
